@@ -1,0 +1,633 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Triangles</title>
+<!-- CSS siguiente no tocar, el CSS que pongais dentro del <style> -->
+<link rel="stylesheet" href="../css/style.css" type="text/css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<style type="text/css">
+	@font-face{
+	font-family:fuente1;
+	src: url('../fonts/Yanone-Regular.ttf') format('truetype');
+	}
+	@font-face{
+	font-family:fuente2;
+	src: url('../fonts/CabinCondensed-Regular.ttf') format('truetype');
+	}
+	body{
+	margin:0;
+	overflow-y:scroll;
+	}
+	#actividades{
+		overflow:hidden;
+		border:1px dotted gray;
+		border-radius:11px;
+		padding:14px 5px 0 20px;
+		width:740px;
+		background-color:#E0D8E3;
+		margin: 18px auto 0;
+	}
+	#titulo{
+		font-family:fuente2;
+		text-align:center;
+		font-size:36px;
+		color:#84658f;
+		margin-bottom:22px;
+	}
+	label{
+		margin-bottom:7px;
+		font-family:fuente1;
+		color:#84658f;
+	}
+	.marca2{
+		ddddisplay: inline-block;
+		margin-top:7px;
+		font-size:30px;
+	}
+	.apartado{
+		margin-top: 10px;
+	}
+	.apartado:first-child{
+		margin-top: 25px;
+	}
+	#vale{
+		margin-top: 25px;
+	}
+	.boton_verde{
+		color:white;
+		font-family:fuente1;
+		font-size:24px;
+		width:98%;
+		height:50px;
+		border-radius:4px;
+		text-align:center;
+		background:linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		line-height:45px;
+		border:1px solid #578F5B;
+		margin-bottom:15px;
+		margin-top:0px;
+	}
+	.boton_verde:hover{
+		background:linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		cursor:pointer;
+	}
+
+	.apartado input{
+		width: 20px;
+		height: 20px;
+	}
+	#nombre-actividad{
+		margin: 15px 0;
+		text-align: center;
+	}
+	.pantalla{
+		min-width: 715px;
+		dddddisplay: block;
+		visibility: hidden;
+		border-radius:7px 7px 0 0;
+		text-align:left;
+		margin-top: 10px;
+	}
+	.triangulo-opciones{
+		background-color: #E8D8EE;
+		margin: 0 auto;
+		margin-top: 25px;
+		width: 100%;
+		padding: 30px;
+		text-align: center;
+		box-sizing:border-box;
+		font-size: 23px;
+	}
+	.dibujo-triangulos{
+		overflow:auto;
+		height: 225px;
+		bbborder:1px solid red;
+	}
+	.respuestas-opciones{
+		width: 20%;
+		margin: 0 auto;
+		text-align: center;
+		background:linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		color: white;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.respuestas-opciones:hover{
+		background:linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		cursor:pointer;
+	}
+	#validar{
+		width: 125px;
+		padding: 5px;
+		color:white;
+		font-family:fuente1;
+		font-size:24px;
+		border-radius:4px;
+		text-align:center;
+		background:linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 11%,#18661F,#1D9026);
+		line-height:45px;
+		border:1px solid #578F5B;
+		margin-bottom:15px;
+		display: none; 
+	}
+	#validar:hover{
+		background:linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-webkit-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-moz-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-o-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		background:-ms-linear-gradient(top,#94EC9B 33%,#18661F,#1D9026);
+		cursor:pointer;
+	}
+	#boton{
+		width: 60%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+	}
+	#crono-tiempo{
+		display:block;
+	}
+	.letra-segundo{
+		color:black;
+		font-size:17px;
+	}
+	#segundos-consumidos{
+		display: inline-block;
+		width:140px;
+		height:22px;
+		font-family:fuente1;
+		font-size:21px;
+	}
+	#tiempo-respuestas{
+		display: none;
+	}
+	#puntuacion{
+		width: 100%;
+		min-width: 715px;
+		text-align: center;
+	}
+	#posibles-respuestas{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 30px;
+	}
+	#ingreso{
+		width: 60px;
+		height: 25px;
+		vertical-align: top;
+		text-align: right;
+		padding-right: 5px;
+		font-family:fuente1;
+		font-size:24px;
+		color: #8904B1;
+	}
+	
+
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="../css/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript">
+	var x=$("document");
+	x.ready(inicio);
+	// Aquí definir todos las variables comunes, como aciertos, fallos, etc..
+	var apartado_actual=0;
+	// Cada uno de los 10 apartados tendrá un valor diferente de apartado_actual
+	var aciertos=0;
+	var fallos=0;
+	var numpreguntas=10;
+	var preguntas_hechas=1;
+	var orden=[];
+	// En orden se guardará el orden de las preguntas de cada actividad
+	var pregunta_actual=0;
+	var en_juego=true;
+	var id_alumno;
+	var id_deberes;
+	var estudiante;
+	var num_actividad;
+	var hecho;
+	var todo_guardado=false;
+	var segundos;
+	var fecha2;
+	var porcentaje;
+	var numero;
+	var operacion_completa="";
+	// En operacion_completa se guardará el resultado correcto por si el alumno falla que éste se pueda escribir en los "fallos realizados"
+	var segundos_contados=0;
+	var turno=0;
+	// En el nivel de actividad que os pido muchas variables no las vais a llegar a usar, por lo que las podéis eliminar si quereis
+	var segundos1=0;
+	var segundos2=0;
+	var minutos1=0;
+	var minutos2=0;
+	var a=0;
+	var actividad_seleccionada=0;
+	var c=0;
+	var cifras;
+	var numCifra='';
+	var suma=0;
+	var bc=0;
+	creaTrianguloLados=['50,0,50,200,200,0','100,0,150,200,50,200','100,0,200,175,0,175','100,0,300,100,0,75','300,0,250,100,0,25','300,180,100,175,0,0','200,5,200,195,30,100','5,5,25,75,250,150','100,5,200,5,150,200','100,150,200,150,150,5'];
+	respuestasLados = [3,2,1,3,3,2,1,3,2,2];
+	creaTrianguloAngulos=['1,1,1,150,200,150','1,1,150,50,200,200','1,1,200,175,100,175','1,175,100,175,250,1','1,1,1,200,200,100','1,100,250,50,250,150','150,1,1,150,200,175','1,50,250,50,250,200','1,200,50,100,200,1','100,1,125,180,50,180'];
+	respuestasAngulos=[1,3,3,3,2,2,2,1,3,2];
+	//Creación triangulos/medidas/unidades de la actividad 2
+	unidades=["m","cm","mm"];
+	creaTriangulosPerimetro=['150,10,225,175,75,175','100,30,100,200,300,30','150,1,1,75,200,175'];
+	coordenadasDatosTriangulosPerimetro=['55,100,200,100,120,200','35,100,150,20,220,125','50,150,30,15,200,100'];
+	datosTriangulosPerimetro=['6,6,5,17','13.5,23.7,47.3,84.5','17.3,9.7,12.2,39.2'];
+
+
+	function inicio(){
+		// Aquí se programa el funcionamiento del menú inicial
+		/*****************************************/
+
+		//Seleccionar actividad/apartado
+		$('.apartado').click(comprobarRadioPulsado);
+		//Pulsar botón START y comprobando que se ha seleccionado alguna actividad/apartado
+		$("#vale").click(function(){nombreFuncion='actividad'+actividad_seleccionada;alert("Activity "+actividad_seleccionada+" selected")
+			self[nombreFuncion]();$("#actividades").css("display","none");$(".pantalla").css("visibility","visible").css("display","block");$("#tiempo-respuestas").css("display","block");inicioCrono();})
+	}
+
+	function actividad0(){
+		$("#nombre-actividad").html("Identify the type of triangle according to the length of its sides");
+			ordenarArray(orden,creaTrianguloLados);
+			contenido_actividad_0();
+	}
+	function contenido_actividad_0(){
+		//Contenido del html de la actividad 0
+		$("#contenedor-actividad").html("<div class='triangulo-opciones'><svg class='dibujo-triangulos'><polygon points="+creaTrianguloLados[orden[pregunta_actual]]+" fill='#ECCEF5' stroke='#8904B1' stroke-width='3'></svg></div><div id='posibles-respuestas'><div class='respuestas-opciones'>Equilateral</div><div class='respuestas-opciones'>Isosceles</div><div class='respuestas-opciones'>Scalene</div></div><div id='boton'><input type='button' value='Return' id='validar'></div>");
+		$("#posibles-respuestas").find(".respuestas-opciones").click(function(){numero_respuesta=$(this).index()+1;proximaPregunta(respuestasLados)})
+	}
+
+	function actividad1(){
+		$("#nombre-actividad").html("Identify the type of triangle according to its angles");
+		// array1 (sin el var)
+		// array2 (sin el var)
+		ordenarArray(orden,creaTrianguloAngulos);
+		contenido_actividad_1();
+	}
+	function contenido_actividad_1(){
+		//Contenido del html de la actividad 1
+		$("#contenedor-actividad").html("<div class='triangulo-opciones'><svg class='dibujo-triangulos'><polygon points="+creaTrianguloAngulos[orden[pregunta_actual]]+" fill='#ECCEF5' stroke='#8904B1' stroke-width='3'></svg></div><div id='posibles-respuestas'><div class='respuestas-opciones'>Right</div><div class='respuestas-opciones'>Acute</div><div class='respuestas-opciones'>Obtuse</div></div><div id='boton'><input type='button' value='Return' id='validar'></div>");
+		$("#posibles-respuestas").find(".respuestas-opciones").click(function(){numero_respuesta=$(this).index()+1;proximaPregunta(respuestasAngulos)})
+	}
+
+	function actividad2(){
+		$("#nombre-actividad").html("Obtain the perimeter of a bullet through its sides");
+		contenido_actividad_2();
+	}
+
+	function contenido_actividad_2(){
+		if (bc==0) {
+			ordenarArray(orden,creaTriangulosPerimetro);
+			bc++;
+		}
+		posicionarTexto();
+		datosLadosPerimetro();
+		datosLados();
+		uni = Math.floor(Math.random()*unidades.length + 0);
+		$("#contenedor-actividad").html("<div class='triangulo-opciones'><svg class='dibujo-triangulos'><polygon points="+creaTriangulosPerimetro[orden[pregunta_actual]]+" fill='#ECCEF5' stroke='#8904B1' stroke-width='3'></polygon><text x='"+provisional[0]+"' y='"+provisional[1]+"' fill='#84658f'  stroke-width='1'>"+infoDatos[0]+" "+unidades[uni]+"</text><text x='"+provisional[2]+"' y='"+provisional[3]+"' fill='#84658f'  stroke-width='1'>"+infoDatos[1]+" "+unidades[uni]+"</text><text x='"+provisional[4]+"' y='"+provisional[5]+"' fill='#84658f'  stroke-width='1'>"+infoDatos[2]+" "+unidades[uni]+"</text></svg><div id='perimetro'><label for='perimetro'>Perimeter = </label><input id='ingreso' type='text' onkeypress='return valida(event)'><span> "+unidades[uni]+"</span></div></div><div id='boton'><input type='button' value='Return' id='validar'></div>")
+		$("#dato3").html("Questions: "+preguntas_hechas+"/"+orden.length)
+		$("#ingreso").keyup(comprobacionResultadoUsuario);
+	}
+
+	function comprobacionResultadoUsuario(){
+		if (c>0) {
+			numCifra=$("#ingreso").val();
+			if (numCifra.length==cifras.length) {
+				if (suma == numCifra) {
+					aciertos++;
+					$("#dato1").html("Correct: "+aciertos)
+					$("#ingreso").css("color","green").css("background-color","#D8F6CE").blur();
+					setTimeout(siguientePregunta, 1500);
+				}else{
+					fallos++;
+					$("#dato2").html("Wrong: "+fallos);
+					$("#ingreso").val(ultimoNumero).blur();
+					$("#ingreso").css("color",'yellow').css("background-color","#F5A9A9");
+					setTimeout(siguientePregunta, 1500);
+				}
+			}
+			c=0;
+		}	
+	}
+
+	function siguientePregunta(){
+		suma=0;
+		porcentaje=(aciertos*100)/preguntas_hechas;
+		porcentaje=Math.round(porcentaje * 100) / 100
+		$("#dato4").html("Score: "+porcentaje+"%")
+		preguntas_hechas++;
+		if (preguntas_hechas>orden.length) {
+			preguntas_hechas=orden.length;
+		}
+		$("#dato3").html("Questions: "+preguntas_hechas+"/"+orden.length)
+		//Si hay preguntas vamos de nuevo a la función contenido_actividad_xxx para mostrar la nueva pregunta.
+		pregunta_actual++;
+		if (pregunta_actual<orden.length) {
+			funcionActividad='contenido_actividad_'+actividad_seleccionada;
+			self[funcionActividad]();
+		}else{
+			//alert("Completed activity")
+			clearInterval(pararCrono);
+			$(".triangulo-opciones").css("visibility","hidden");
+			$("#posibles-respuestas").css("visibility","hidden");
+			$("#validar").css("display","block");
+			$("#validar").click(function(){location.href ="index.html";})
+		}
+	}
+
+	function datosLados(){
+		infoDatos=[];
+		for (var i = 0; i < provi.length-1; i++) {
+			infoDatos.push(provi[i]);
+		}
+	}
+
+	function posicionarTexto(){
+		seleccionDatos=coordenadasDatosTriangulosPerimetro[orden[pregunta_actual]];
+		initial=0;
+		provisional=[];
+		var selec;
+		for (var i = initial; i < seleccionDatos.length; i++) {
+			selec='';
+			if (seleccionDatos[i]==',') {
+				for (var j = initial; j < i; j++) {
+					selec+=seleccionDatos[j];
+					initial++;
+				}
+				provisional.push(selec);
+				initial++;
+			}
+		}
+		for (var z = initial; z < seleccionDatos.length; z++) {
+			selec+=seleccionDatos[z];
+					initial++;
+		}
+		provisional.push(selec);
+	}
+
+	//Validar la entrada numérica y decimal introducida por el usuario
+	function valida(e){
+		c++;
+		tecla =e.keyCode;
+	    //Tecla de retroceso para borrar, siempre la permite
+	    if (tecla==8){
+	        return true;
+	    }
+	        
+	    // Patron de entrada, en este caso solo acepta numeros
+	    patron =/[0-9-.]/;
+	    tecla_final = String.fromCharCode(tecla);
+	    return patron.test(tecla_final);
+	}
+
+
+	function datosLadosPerimetro(){
+		selDat=datosTriangulosPerimetro[orden[pregunta_actual]];
+		ini=0;
+		provi=[];
+		var dp;
+		for (var i = ini; i < selDat.length; i++) {
+			dp='';
+			if (selDat[i]==',') {
+				for (var j = ini; j < i; j++) {
+					dp+=selDat[j];
+					ini++;
+				}
+				provi.push(dp);
+				ini++;
+			}
+		}
+		for (var z = ini; z < selDat.length; z++) {
+			dp+=selDat[z];
+			ultimoNumero=dp;
+					ini++;
+		}
+		provi.push(dp);
+		for (var k = 0; k < provi.length-1; k++) {
+			suma = suma + parseFloat(provi[k]);
+		}
+		cifras = suma.toString();
+	}
+
+	function proximaPregunta(respuestas){
+		//Evaluación de las respuestas
+		if (numero_respuesta == respuestas[orden[pregunta_actual]]) {
+			aciertos++;
+			$("#dato1").html("Correct: "+aciertos)
+		}else{
+			fallos++;
+			$("#dato2").html("Wrong: "+fallos);
+		}
+		porcentaje=(aciertos*100)/preguntas_hechas;
+		porcentaje=Math.round(porcentaje * 100) / 100
+		$("#dato4").html("Score: "+porcentaje+"%")
+		preguntas_hechas++;
+		if (preguntas_hechas>orden.length) {
+			preguntas_hechas=orden.length;
+		}
+		$("#dato3").html("Questions: "+preguntas_hechas+"/"+numpreguntas)
+		//Si hay preguntas vamos de nuevo a la función contenido_actividad_xxx para mostrar la nueva pregunta.
+		pregunta_actual++;
+		if (pregunta_actual<orden.length) {
+			funcionActividad='contenido_actividad_'+actividad_seleccionada;
+			self[funcionActividad]();
+		}else{
+			//alert("Completed activity")
+			clearInterval(pararCrono);
+			$(".triangulo-opciones").css("visibility","hidden");
+			$("#posibles-respuestas").css("visibility","hidden");
+			$("#validar").css("display","block");
+			$("#validar").click(function(){location.href ="index.html";})
+		}
+
+	} 
+
+	function comprobarRadioPulsado(){
+		//Nos indica que input radio se ha seleccionado.(Por defecto es 0);
+		actividad_seleccionada=$(this).index();
+	}
+	function ordenarArray(ordenTriangulos,triangulos){
+		//Se ordena el array orden de forma aleatoria
+		while(ordenTriangulos.length<triangulos.length){
+			random = Math.floor(Math.random()*triangulos.length + 0);
+			if (ordenTriangulos.length<1) {
+					ordenTriangulos.push(random);
+			};
+			if (ordenTriangulos.indexOf(random)==-1) {
+					ordenTriangulos.push(random);
+			};
+		}
+		numpreguntas=triangulos.length;
+	}
+
+	function inicioCrono(){
+		if (a==0) {
+			intervalo();
+			a++;
+		}else{
+			segundos1++;
+			if (segundos1>9) {
+				segundos1=0;
+				segundos2++;
+			}
+			if (segundos2>5) {
+				minutos1++;
+				segundos1=0;
+				segundos2=0;
+			}
+			if (minutos1>9) {
+				minutos2++;
+				minutos1=0;
+			};
+		$("#segundos-consumidos").html(""+minutos2+minutos1+":"+segundos2+segundos1)
+	}
+
+
+	}
+	function intervalo(){
+		pararCrono=setInterval(inicioCrono,1000);
+	}
+</script>
+
+</head>
+<body>
+<!-- crear el contenido HTML fijo, como por ejemplo de entrada el menú inicial-->
+<section id="wrapper">
+	<div id="actividades">
+		<div id="titulo">Triangles</div>
+		<div id="formulario-actividades">
+			<div id="desglose_actividades">
+				<div class="apartado">
+					<input type="radio" id="hop1" name="opcions" checked/>
+					<label for="hop1">
+						<span class="marca"></span>
+						<span class="marca2">Identify the type of triangle according to the length of its sides</span>
+					</label>
+				</div>
+				
+				<div class="apartado">
+					<input type="radio" id="hop2" name="opcions"/>
+					<label for="hop2">
+						<span class="marca"></span>
+						<span class="marca2">Identify the type of triangle according to its angles</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop3" name="opcions"/>
+					<label for="hop3">
+						<span class="marca"></span>
+						<span class="marca2">Obtain the perimeter of a bullet through its sides</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop4" name="opcions"/>
+					<label for="hop4">
+						<span class="marca"></span>
+						<span class="marca2">Obtain the perimeter of a triangle through its base and height</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop5" name="opcions"/>
+					<label for="hop5">
+						<span class="marca"></span>
+						<span class="marca2">Get an angle through your other two angles</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop6" name="opcions"/>
+					<label for="hop6">
+						<span class="marca"></span>
+						<span class="marca2">Get the length of one side of a triangle across the rest of the sides</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop7" name="opcions"/>
+					<label for="hop7">
+						<span class="marca"></span>
+						<span class="marca2">Similar triangles I</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop8" name="opcions"/>
+					<label for="hop8">
+						<span class="marca"></span>
+						<span class="marca2">Similar triangles II</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop9" name="opcions"/>
+					<label for="hop9">
+						<span class="marca"></span>
+						<span class="marca2">Correspondence of angles with opposite sides</span>
+					</label>
+				</div>
+				<div class="apartado">
+					<input type="radio" id="hop10" name="opcions"/>
+					<label for="hop10">
+						<span class="marca"></span>
+						<span class="marca2">Find the missing side with the Pythagorean Theorem</span>
+					</label>
+				</div>
+				<button id="vale" class="boton_verde">START</button>
+			</div>
+		</div>
+	</div>
+	<article class="pantalla">
+		<div id="nombre-actividad"></div>
+		<div id="contenedor-actividad">
+			<!--<div class='triangulo-opciones'>
+				<svg class='dibujo-triangulos'>
+					<polygon points="150,1,1,75,200,175" fill='#ECCEF5' stroke='#8904B1' stroke-width='3'/>
+					<text x="50" y="150">
+					  17.3
+					</text>
+					<text x="30" y="15">
+					  9.7
+					</text>
+					<text x="200" y="100">
+					 12.2
+					</text>
+				</svg>
+				<div id="perimetro"><label for="perimetro">Perímetro = </label><input type="text"><span> cm</span></div>
+			</div>-->
+		</div>
+		<section id="tiempo-respuestas">
+				<div id="crono-tiempo"> <span class="letra-segundo"> Seconds:</span>
+					<div id="segundos-consumidos">00:00</div>
+				</div>
+				<div id="puntuacion">
+					<div id="dato1" class="datos">Correct: 0</div>
+					<div id="dato2" class="datos">Wrong: 0</div>
+					<div id="dato3" class="datos">Questions: 1/10</div>
+					<div id="dato4" class="datos">Score: 0%</div>
+				</div>
+			</section>
+	</article>
+</section>
+</body>
+</html>
