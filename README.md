@@ -7,3 +7,4 @@ Se me encomendó realizar los 3 primeros apartados:
 
 
 Creación de los triángulos y manejo de arrays.
+Javascript/jQuery
